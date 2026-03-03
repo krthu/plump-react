@@ -25,4 +25,6 @@ export interface Game {
   roundIndex: number;
   dealerIndex: number;
   phase: Phase;
+  order: number[];
+  orderLocked: boolean;
 }

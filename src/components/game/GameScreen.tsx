@@ -18,8 +18,7 @@ export default function GameScreen({ game, setGame, notify }: Props) {
 
   const [results, setResults] = useState<number[]>(game.players.map(() => 0));
 
-  // ✅ sittordning
-  const [order, setOrder] = useState<number[]>(game.players.map((_, i) => i));
+  const order = game.order;
 
   const round = game.rounds[game.roundIndex];
 
@@ -36,6 +35,7 @@ export default function GameScreen({ game, setGame, notify }: Props) {
       setGame({
         ...game,
         phase: "results",
+        orderLocked: game.orderLocked || game.roundIndex === 0,
       });
 
       return;
@@ -48,7 +48,11 @@ export default function GameScreen({ game, setGame, notify }: Props) {
       let pts = 0;
 
       if (results[i] === bids[i]) {
-        pts = 10 * results[i];
+        if (bids[i] === 10) {
+          pts = 100 + results[i];  
+        } else {
+          pts = 10 + results[i];
+        }
         scores[i] += pts;
       }
 
@@ -65,14 +69,13 @@ export default function GameScreen({ game, setGame, notify }: Props) {
     const first = newOrder.shift();
     newOrder.push(first!);
 
-    setOrder(newOrder);
-
     setGame({
       ...game,
       scores,
       history: [...game.history, { round, data: roundData }],
       roundIndex: game.roundIndex + 1,
       phase: "bidding",
+      order: newOrder,
     });
 
     // reset inputs
@@ -91,7 +94,7 @@ export default function GameScreen({ game, setGame, notify }: Props) {
         setBids={setBids}
         setResults={setResults}
         order={order}
-        setOrder={setOrder}
+        setOrder={(o) => setGame({ ...game, order: o })}
       />
 
       <Button

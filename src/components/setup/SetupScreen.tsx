@@ -30,6 +30,8 @@ export default function SetupScreen({ setGame, setView }: Props) {
       roundIndex: 0,
       dealerIndex: 0,
       phase: "bidding",
+      order: players.map((_, i) => i),
+      orderLocked: false,
     };
 
     setGame(game);

@@ -21,11 +21,10 @@ export default function BidsTable({
   order,
   setOrder,
 }: Props) {
-  // ✅ man får bara ändra innan första rundan sparats
-  const setupPhase = game.history.length === 0;
+  const canReorder = !game.orderLocked;
 
   function movePlayer(from: number, to: number) {
-    if (!setupPhase) return;
+    if (!canReorder) return;
     if (to < 0 || to >= order.length) return;
 
     const newOrder = [...order];
@@ -49,7 +48,7 @@ export default function BidsTable({
             bid={bids[playerIndex]}
             result={results[playerIndex]}
             isDealer={isDealer}
-            showMoveButtons={setupPhase}
+            showMoveButtons={canReorder}
             setBid={(v) => {
               const b = [...bids];
               b[playerIndex] = v;

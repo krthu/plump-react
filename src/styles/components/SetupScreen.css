@@ -1,0 +1,102 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  display: block;
+
+  margin: 8px auto;
+  padding: 10px;
+  font-size: 16px;
+  background: #f7f7f7;
+  color: rgb(0, 0, 0);
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
+.playerList input {
+  display: block;
+
+  margin: 8px auto;
+  padding: 10px;
+  font-size: 16px;
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
+.setupScreen label {
+  display: block;
+  margin: 8px 0;
+}
+
+.playerList {
+  margin-top: 12px;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Container för checkbox med label */
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  color: white;
+}
+
+/* Dölj standard-checkbox */
+.checkboxWrapper input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 6px;
+  background: #222;
+  cursor: pointer;
+  position: relative;
+  /* transition:
+    background 0.2s ease,
+    border-color 0.2s ease; */
+}
+
+/* Hover-effekt */
+.checkboxWrapper input[type="checkbox"]:hover {
+  border-color: #888;
+  background: #2a2a2a;
+}
+
+/* Checked state */
+.checkboxWrapper input[type="checkbox"]:checked {
+  background: #007aff;
+  border-color: #007aff;
+}
+
+/* Checkmark */
+.checkboxWrapper input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+}
+
+/* Disabled */
+.checkboxWrapper input[type="checkbox"]:disabled {
+  background: #555;
+  border-color: #444;
+  cursor: not-allowed;
+}

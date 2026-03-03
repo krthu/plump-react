@@ -1,0 +1,103 @@
+.gameScreen {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.finished {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.roundCard {
+  background: #333;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.roundBig {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.dealerInfo {
+  font-size: 16px;
+}
+
+.scoreBoard div {
+  margin: 6px 0;
+}
+
+.bidsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.playerRow {
+  display: flex;
+  gap: 12px;
+  min-width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerRow .playerName {
+  width: 100px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.playerRow input {
+  width: 60px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #222;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+
+.playerRow.dealer {
+  border: 2px solid #007aff;
+}
+
+.dealerBadge {
+  font-size: 12px;
+  background: #007aff;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.moveButtons button {
+  margin-left: 4px;
+}
+
+.playerRow input:disabled {
+  background: #888;
+  font-weight: bold;
+}
+
+.historyView {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  padding: 20px;
+  overflow: auto;
+}
+
+.historyTable {
+  margin-top: 20px;
+  font-family: monospace;
+}
+
+.historyRow {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 6px;
+}

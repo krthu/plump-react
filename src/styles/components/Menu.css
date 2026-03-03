@@ -1,0 +1,29 @@
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+}
+
+#menuPanel {
+  width: 240px;
+  height: 100%;
+  background: #1c1c1e;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.menuItem {
+  padding: 18px 22px;
+  font-size: 18px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: #2c2c2e;
+}

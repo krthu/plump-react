@@ -1,0 +1,58 @@
+/* Bas-stil för alla knappar */
+.btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Fullbredd som default */
+.btn.fullWidth {
+  width: 100%;
+}
+
+/* Disabled */
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Variants */
+.btn.normal {
+  background-color: #007aff;
+  color: white;
+}
+.btn.normal:hover:not(.disabled) {
+  background-color: #005ecb;
+}
+
+.btn.warning {
+  background-color: #ff4c4c;
+  color: white;
+}
+.btn.warning:hover:not(.disabled) {
+  background-color: #cc0000;
+}
+
+.btn.success {
+  background-color: #28a745;
+  color: white;
+}
+.btn.success:hover:not(.disabled) {
+  background-color: #1e7e34;
+}
+
+.btn.extra {
+  background-color: #ffc107;
+  color: black;
+}
+.btn.extra:hover:not(.disabled) {
+  background-color: #e0a800;
+}

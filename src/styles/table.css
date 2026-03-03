@@ -1,0 +1,15 @@
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.scoreTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scoreTable th,
+.scoreTable td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+}

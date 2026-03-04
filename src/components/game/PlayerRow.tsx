@@ -13,6 +13,8 @@ interface Props {
 
   showMoveButtons?: boolean;
   isDealer?: boolean;
+  gainedPoints?: number;
+  highlightPoints?: boolean;
 }
 
 export default function PlayerRow({
@@ -26,29 +28,43 @@ export default function PlayerRow({
   moveDown,
   showMoveButtons,
   isDealer,
+  gainedPoints = 0,
+  highlightPoints = false,
 }: Props) {
   return (
-    <div className={`playerRow ${isDealer ? "dealer" : ""}`}>
+    <div
+      className={`playerRow ${isDealer ? "dealer" : ""} ${
+        highlightPoints && gainedPoints > 0 ? "gotPoints" : ""
+      }`}
+    >
       <div className="playerName">
         {name}
         {isDealer && <span className="dealerBadge">🎴 Given</span>}
       </div>
 
-      <input
-        type="number"
-        value={bid}
-        min={0}
-        onChange={(e) => setBid(Number(e.target.value))}
-        disabled={phase === "results" ? true : false}
-      />
+      <div className="bidCell">
+        <input
+          type="number"
+          value={bid}
+          min={0}
+          onChange={(e) => setBid(Number(e.target.value))}
+          disabled={phase === "results" ? true : false}
+        />
+      </div>
 
-      <input
-        type="number"
-        value={result}
-        min={0}
-        onChange={(e) => setResult(Number(e.target.value))}
-        disabled={phase === "bidding" ? true : false}
-      />
+      <div className="resultCell">
+        <input
+          type="number"
+          value={result}
+          min={0}
+          onChange={(e) => setResult(Number(e.target.value))}
+          disabled={phase === "bidding" ? true : false}
+        />
+
+        {highlightPoints && gainedPoints > 0 && (
+          <div className="pointsPopup">+{gainedPoints}</div>
+        )}
+      </div>
 
       {showMoveButtons && (
         <div className="moveButtons">

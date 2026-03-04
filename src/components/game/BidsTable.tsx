@@ -10,6 +10,8 @@ interface Props {
 
   order: number[];
   setOrder: (o: number[]) => void;
+  lastRoundPoints: number[] | null;
+  isScoringAnimationActive: boolean;
 }
 
 export default function BidsTable({
@@ -20,6 +22,8 @@ export default function BidsTable({
   setResults,
   order,
   setOrder,
+  lastRoundPoints,
+  isScoringAnimationActive,
 }: Props) {
   const canReorder = !game.orderLocked;
 
@@ -39,6 +43,10 @@ export default function BidsTable({
       {order.map((playerIndex, visualIndex) => {
         const player = game.players[playerIndex];
         const isDealer = visualIndex === order.length - 1;
+        const gainedPoints =
+          lastRoundPoints && lastRoundPoints[playerIndex]
+            ? lastRoundPoints[playerIndex]
+            : 0;
 
         return (
           <PlayerRow
@@ -49,6 +57,8 @@ export default function BidsTable({
             result={results[playerIndex]}
             isDealer={isDealer}
             showMoveButtons={canReorder}
+            gainedPoints={gainedPoints}
+            highlightPoints={isScoringAnimationActive}
             setBid={(v) => {
               const b = [...bids];
               b[playerIndex] = v;

@@ -18,6 +18,10 @@ export default function GameScreen({ game, setGame, notify }: Props) {
 
   const [results, setResults] = useState<number[]>(game.players.map(() => 0));
 
+  const [lastRoundPoints, setLastRoundPoints] = useState<number[] | null>(null);
+  const [isScoringAnimationActive, setIsScoringAnimationActive] =
+    useState(false);
+
   const order = game.order;
 
   const round = game.rounds[game.roundIndex];
@@ -44,17 +48,21 @@ export default function GameScreen({ game, setGame, notify }: Props) {
     // ===== RÄTTNING =====
     const scores = [...game.scores];
 
+    const gainedPoints: number[] = game.players.map(() => 0);
+
     const roundData = game.players.map((name, i) => {
       let pts = 0;
 
       if (results[i] === bids[i]) {
         if (bids[i] === 10) {
-          pts = 100 + results[i];  
+          pts = 100 + results[i];
         } else {
           pts = 10 + results[i];
         }
         scores[i] += pts;
       }
+
+      gainedPoints[i] = pts;
 
       return {
         name,
@@ -78,6 +86,12 @@ export default function GameScreen({ game, setGame, notify }: Props) {
       order: newOrder,
     });
 
+    setLastRoundPoints(gainedPoints);
+    setIsScoringAnimationActive(true);
+    setTimeout(() => {
+      setIsScoringAnimationActive(false);
+    }, 2000);
+
     // reset inputs
     setBids(game.players.map(() => 0));
     setResults(game.players.map(() => 0));
@@ -95,6 +109,8 @@ export default function GameScreen({ game, setGame, notify }: Props) {
         setResults={setResults}
         order={order}
         setOrder={(o) => setGame({ ...game, order: o })}
+        lastRoundPoints={lastRoundPoints}
+        isScoringAnimationActive={isScoringAnimationActive}
       />
 
       <Button
@@ -104,7 +120,11 @@ export default function GameScreen({ game, setGame, notify }: Props) {
       />
 
       <h3>Poäng</h3>
-      <ScoreBoard game={game} />
+      <ScoreBoard
+        game={game}
+        lastRoundPoints={lastRoundPoints}
+        isScoringAnimationActive={isScoringAnimationActive}
+      />
     </>
   );
 }

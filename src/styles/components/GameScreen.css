@@ -46,6 +46,18 @@
   align-items: center;
 }
 
+.bidCell,
+.resultCell {
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.playerRow.gotPoints {
+  animation: playerGlow 0.3s ease-out 0s 3 alternate;
+}
+
 .playerRow .playerName {
   width: 100px;
   font-weight: bold;
@@ -81,6 +93,118 @@
 .playerRow input:disabled {
   background: #888;
   font-weight: bold;
+}
+
+.pointsPopup {
+  font-size: 16px;
+  font-weight: 700;
+  color: #32ff7e;
+  text-shadow:
+    0 0 6px #32ff7e,
+    0 0 12px #0be881;
+  position: absolute;
+  right: -6px;
+  top: -10px;
+  pointer-events: none;
+  animation: pointsRise 1.6s ease-out forwards;
+}
+
+.scoreBoard .scoreRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.scoreBoard .scoreRowGain {
+  animation: scoreGlow 0.3s ease-out 0s 3 alternate;
+}
+
+.scoreBoard .scoreRowRankUp {
+  animation: rankUp 0.4s ease-out;
+}
+
+.scoreBoard .scoreRowRankDown {
+  animation: rankDown 0.4s ease-out;
+}
+
+.scoreBoard .scoreName {
+  font-weight: 600;
+}
+
+.scoreBoard .scoreValue {
+  margin-left: auto;
+}
+
+.scoreBoard .scoreDelta {
+  margin-left: 8px;
+  min-width: 48px;
+  text-align: right;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.scoreBoard .scoreDeltaVisible {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffd32a;
+  text-shadow:
+    0 0 6px #ffd32a,
+    0 0 12px #ffdd59;
+  animation: pointsRise 1.6s ease-out forwards;
+}
+
+@keyframes playerGlow {
+  from {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(50, 255, 126, 0);
+  }
+  to {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(50, 255, 126, 0.5);
+  }
+}
+
+@keyframes pointsRise {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes scoreGlow {
+  from {
+    transform: translateY(0);
+    background: transparent;
+  }
+  to {
+    transform: translateY(-2px);
+    background: rgba(255, 211, 42, 0.08);
+  }
+}
+
+@keyframes rankUp {
+  0% {
+    transform: translateY(6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rankDown {
+  0% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .historyView {

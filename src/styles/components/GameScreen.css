@@ -215,13 +215,97 @@
   overflow: auto;
 }
 
-.historyTable {
-  margin-top: 20px;
-  font-family: monospace;
+.historyCard {
+  margin-top: 16px;
+  background: #222;
+  border-radius: 12px;
+  padding: 16px;
 }
 
-.historyRow {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 6px;
+.historyCard h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.historyEmpty {
+  margin-top: 24px;
+  text-align: center;
+  color: #aaa;
+}
+
+.historyTableWrapper {
+  overflow-x: auto;
+}
+
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.historyTable th,
+.historyTable td {
+  padding: 6px 8px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.historyRoundHeader {
+  text-align: left;
+}
+
+.historyPlayerHeader {
+  min-width: 80px;
+  border-right: 1px solid #333;
+}
+
+.historyRoundCell {
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.historyRoundCards {
+  margin-right: 4px;
+}
+
+.historyRoundDir {
+  opacity: 0.7;
+}
+
+.historyCell {
+  border-top: 1px solid #333;
+  border-right: 1px solid #333;
+}
+
+.historyBidGot {
+  font-weight: 600;
+}
+
+.historyPoints {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.historyCellWin {
+  background: rgba(50, 255, 126, 0.08);
+  color: #e5ffe5;
+}
+
+.historyCellLose {
+  color: #aaa;
+}
+
+.historyTotalRow {
+  border-top: 2px solid #555;
+}
+
+.historyTotalCell {
+  font-weight: 700;
+}
+
+.historyTable th:last-child,
+.historyTable td:last-child {
+  border-right: none;
 }

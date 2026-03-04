@@ -55,7 +55,10 @@ export default function App() {
       {menuOpen && (
         <Menu
           close={() => setMenuOpen(false)}
-          showHistory={() => setView("history")}
+          showHistory={() => {
+            setView("history");
+            setMenuOpen(false);
+          }}
           resetGame={resetGame}
         />
       )}

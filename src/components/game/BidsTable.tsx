@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import type { Game } from "../../types/game";
 import PlayerRow from "./PlayerRow";
 
@@ -27,6 +28,9 @@ export default function BidsTable({
 }: Props) {
   const canReorder = !game.orderLocked;
 
+  const bidRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const resultRefs = useRef<(HTMLInputElement | null)[]>([]);
+
   function movePlayer(from: number, to: number) {
     if (!canReorder) return;
     if (to < 0 || to >= order.length) return;
@@ -36,6 +40,20 @@ export default function BidsTable({
     newOrder.splice(to, 0, moved);
 
     setOrder(newOrder);
+  }
+
+  function focusNextBid(fromVisualIndex: number) {
+    const next = fromVisualIndex + 1;
+    if (next < order.length) {
+      bidRefs.current[next]?.focus();
+    }
+  }
+
+  function focusNextResult(fromVisualIndex: number) {
+    const next = fromVisualIndex + 1;
+    if (next < order.length) {
+      resultRefs.current[next]?.focus();
+    }
   }
 
   return (
@@ -59,6 +77,14 @@ export default function BidsTable({
             showMoveButtons={canReorder}
             gainedPoints={gainedPoints}
             highlightPoints={isScoringAnimationActive}
+            bidRef={(el) => {
+              bidRefs.current[visualIndex] = el;
+            }}
+            resultRef={(el) => {
+              resultRefs.current[visualIndex] = el;
+            }}
+            onBidEnter={() => focusNextBid(visualIndex)}
+            onResultEnter={() => focusNextResult(visualIndex)}
             setBid={(v) => {
               const b = [...bids];
               b[playerIndex] = v;

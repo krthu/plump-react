@@ -15,6 +15,10 @@ interface Props {
   isDealer?: boolean;
   gainedPoints?: number;
   highlightPoints?: boolean;
+  bidRef?: (el: HTMLInputElement | null) => void;
+  resultRef?: (el: HTMLInputElement | null) => void;
+  onBidEnter?: () => void;
+  onResultEnter?: () => void;
 }
 
 export default function PlayerRow({
@@ -30,6 +34,10 @@ export default function PlayerRow({
   isDealer,
   gainedPoints = 0,
   highlightPoints = false,
+  bidRef,
+  resultRef,
+  onBidEnter,
+  onResultEnter,
 }: Props) {
   return (
     <div
@@ -49,6 +57,14 @@ export default function PlayerRow({
           min={0}
           onChange={(e) => setBid(Number(e.target.value))}
           disabled={phase === "results" ? true : false}
+          onFocus={(e) => e.target.select()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              onBidEnter?.();
+            }
+          }}
+          ref={bidRef}
         />
       </div>
 
@@ -59,6 +75,14 @@ export default function PlayerRow({
           min={0}
           onChange={(e) => setResult(Number(e.target.value))}
           disabled={phase === "bidding" ? true : false}
+          onFocus={(e) => e.target.select()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              onResultEnter?.();
+            }
+          }}
+          ref={resultRef}
         />
 
         {highlightPoints && gainedPoints > 0 && (
